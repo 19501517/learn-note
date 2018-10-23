@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Graffiti/Graffiti.iml" filepath="$PROJECT_DIR$/Graffiti/Graffiti.iml" />
       <module fileurl="file://$PROJECT_DIR$/learn-note.iml" filepath="$PROJECT_DIR$/learn-note.iml" />
     </modules>
   </component>
