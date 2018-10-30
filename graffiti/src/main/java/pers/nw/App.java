@@ -1,4 +1,4 @@
-package com.nw;
+package pers.nw;
 
 /**
  * Hello world!
