@@ -10,6 +10,11 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>Graffiti</module>
+    <module>leetcode</module>
+      <module>leetcode</module>
+    <module>leetcode</module>
+    <module>leetcode</module>
+    <module>leetcode</module>
   </modules>
 
   <name>learn-note</name>
