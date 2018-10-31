@@ -1,4 +1,4 @@
-package townum;
+package t1_TwoNum;
 
 /**
  * 穷举法

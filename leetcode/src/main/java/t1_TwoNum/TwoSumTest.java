@@ -1,17 +1,14 @@
-package townum;
+package t1_TwoNum;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import utils.AssertUtils;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.stream.Stream;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -24,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * <p>
  * Because nums[0] + nums[1] = 2 + 7 = 9,
  * return [2, 7].
- *
+ * <p>
  * 这里为了结果直观，把原来的返回数组下标改成返回当前数值
  */
 class TwoSumTest {
