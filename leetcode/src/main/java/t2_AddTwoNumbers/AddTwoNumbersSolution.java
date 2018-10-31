@@ -2,7 +2,10 @@ package t2_AddTwoNumbers;
 
 import commonmodel.ListNode;
 
-public class AddTwoNumbersSolution implements IAddTwoNumbersSolution {
+/**
+ * 自己的方法，leetcode上面的解决方法也是跟这个一样
+ */
+class AddTwoNumbersSolution implements IAddTwoNumbersSolution {
 
     @Override
     public ListNode<Integer> addTwoNumbers(ListNode<Integer> l1, ListNode<Integer> l2) {
