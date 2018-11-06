@@ -42,9 +42,15 @@ class LongestSubstringSolutionTest {
     @ParameterizedTest
     @MethodSource("getParams")
     @DisplayName("exhaustion solution")
-    void solutionTest(String s, int expectedLength) {
-        ILongestSubstringSolution solution = new LongestSubstringBitSetSolution();
-        assertAndPrint(s, expectedLength, solution);
+    void bitsetSolutionTest(String s, int expectedLength) {
+        assertAndPrint(s, expectedLength, new LongestSubstringBitSetSolution());
+    }
+
+    @ParameterizedTest
+    @MethodSource("getParams")
+    @DisplayName("brute force solution")
+    void bruteForceSolutionTest(String s, int expectedLength) {
+        assertAndPrint(s, expectedLength, new LongestSubstringBruteForceSolution());
     }
 
     private void assertAndPrint(String s, int expectedLength, ILongestSubstringSolution solution) {
