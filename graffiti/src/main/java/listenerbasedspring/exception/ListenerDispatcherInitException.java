@@ -1,4 +1,4 @@
-package springschemalistener;
+package listenerbasedspring.exception;
 
 /**
  * @Author liuyefeng

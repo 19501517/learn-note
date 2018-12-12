@@ -1,4 +1,4 @@
-package springschemalistener.constant;
+package listenerbasedspring.constant;
 
 /**
  * xml标签常量

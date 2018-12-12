@@ -1,7 +1,7 @@
-package springschemalistener.schema;
+package listenerbasedspring.schema;
 
+import listenerbasedspring.constant.ElementNameConstants;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
-import springschemalistener.constant.ElementNameConstants;
 
 /**
  * @Author liuyefeng

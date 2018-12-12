@@ -1,6 +1,6 @@
-package springschemalistener.constant;
+package listenerbasedspring.constant;
 
-import springschemalistener.diapatcher.DefaultListenerEventDispatcher;
+import listenerbasedspring.dispatcher.DefaultListenerEventDispatcher;
 
 /**
  * @Author liuyefeng

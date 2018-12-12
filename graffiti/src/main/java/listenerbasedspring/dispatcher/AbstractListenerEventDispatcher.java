@@ -1,8 +1,11 @@
-package springschemalistener.diapatcher;
+package listenerbasedspring.dispatcher;
 
+import listenerbasedspring.definition.ListenerDefinition;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+
+import java.util.Collection;
 
 /**
  * @Author liuyefeng
@@ -16,6 +19,8 @@ public abstract class AbstractListenerEventDispatcher implements ListenerEventDi
     // 例如使用map存储的AbstractMapListenerDispatcher
     // 为了简单，默认所有的dispatch都使用map存储
 
+    public AbstractListenerEventDispatcher(Collection<ListenerDefinition> definitions) {
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

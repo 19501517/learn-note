@@ -6,7 +6,7 @@
         targetNamespace="http://www.nw.com/listener"
         elementFormDefault="qualified">
 
-    <xsd:element name="config">
+    <xsd:element name="dispatcher">
         <xsd:complexType>
             <xsd:attribute name="id" type="xsd:string" use="required"/>
             <xsd:attribute name="base-package" type="xsd:string" use="required"/>

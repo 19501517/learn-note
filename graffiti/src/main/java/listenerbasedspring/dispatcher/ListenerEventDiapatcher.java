@@ -1,4 +1,4 @@
-package springschemalistener.diapatcher;
+package listenerbasedspring.dispatcher;
 
 /**
  * @Author liuyefeng

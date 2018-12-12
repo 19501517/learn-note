@@ -1,4 +1,4 @@
-package springschemalistener.annotation;
+package listenerbasedspring.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
