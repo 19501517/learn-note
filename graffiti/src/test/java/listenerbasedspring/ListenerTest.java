@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @Date 2018/12/12 17:42
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:ApplicationContext-test.xml"})
+@ContextConfiguration(locations = {"classpath:listenerbasedspring/ApplicationContext-test.xml"})
 public class ListenerTest {
 
     @Autowired
