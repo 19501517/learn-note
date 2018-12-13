@@ -2,6 +2,7 @@ package com.nw.dispatcher;
 
 
 import com.nw.definition.ListenerDefinition;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,12 +15,21 @@ import java.util.List;
  */
 public class MultiThreadListenerEventDispatcher extends AbstractListenerEventDispatcher {
 
+    private static final int CPU_CORE = Runtime.getRuntime().availableProcessors();
+
+    private ThreadPoolTaskExecutor pool;
+
     public MultiThreadListenerEventDispatcher(Collection<ListenerDefinition> definitions) {
         super(definitions);
+        pool = new ThreadPoolTaskExecutor();
+        pool.setMaxPoolSize(CPU_CORE * 2);
+        pool.setAllowCoreThreadTimeOut(true);
     }
 
     @Override
-    protected void doFire(Object event, List<ListenerInvoker> invokers) {
-
+    protected void doFire(final Object event, final List<ListenerInvoker> invokers) {
+        invokers.forEach(listenerInvoker -> pool.submit(
+                () -> listenerInvoker.invoke(event))
+        );
     }
 }
