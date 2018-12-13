@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * @Author liuyefeng
  * @Date 2018/12/11 18:17
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Listener {
 }

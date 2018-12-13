@@ -10,21 +10,16 @@ import java.lang.reflect.Method;
  */
 public class ListenerDefinition {
 
-    private Class<?> clazz;
+    private Class<?> receiverClass;
+
+    private Class<?> eventClass;
 
     private Method listenerInvokeMethod;
 
-    public ListenerDefinition(Class<?> clazz, Method listenerInvokeMethod) {
-        this.clazz = clazz;
+    public ListenerDefinition(Class<?> receiverClass, Class<?> eventClass, Method listenerInvokeMethod) {
+        this.receiverClass = receiverClass;
         this.listenerInvokeMethod = listenerInvokeMethod;
-    }
-
-    public Class<?> getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Class<?> clazz) {
-        this.clazz = clazz;
+        this.eventClass = eventClass;
     }
 
     public Method getListenerInvokeMethod() {
@@ -33,5 +28,21 @@ public class ListenerDefinition {
 
     public void setListenerInvokeMethod(Method listenerInvokeMethod) {
         this.listenerInvokeMethod = listenerInvokeMethod;
+    }
+
+    public Class<?> getEventClass() {
+        return eventClass;
+    }
+
+    public void setEventClass(Class<?> eventClass) {
+        this.eventClass = eventClass;
+    }
+
+    public Class<?> getReceiverClass() {
+        return receiverClass;
+    }
+
+    public void setReceiverClass(Class<?> receiverClass) {
+        this.receiverClass = receiverClass;
     }
 }

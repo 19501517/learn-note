@@ -4,10 +4,8 @@ import com.nw.annotation.Listener;
 import com.nw.constant.ElementNameConstants;
 import com.nw.constant.ListenerConstants;
 import com.nw.definition.ListenerDefinition;
-import com.nw.exception.ListenerDispatcherInitException;
-import com.nw.filters.ClassTypeFilter;
-import com.nw.filters.MethodParamCountFilter;
-import com.nw.filters.MethodReturnTypeFilter;
+import com.nw.exception.DispatcherInitException;
+import com.nw.filters.*;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.BeanDefinitionParser;
@@ -18,7 +16,6 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
-import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
@@ -70,7 +67,7 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
         try {
             dispatcherClazz = Class.forName(activeListenerEventDispatcher);
         } catch (ClassNotFoundException e) {
-            throw new ListenerDispatcherInitException("not exist dispatcher " + activeListenerEventDispatcher, e);
+            throw new DispatcherInitException("not exist dispatcher " + activeListenerEventDispatcher, e);
         }
 
         // 扫描并获取所有的监听器实现
@@ -97,7 +94,7 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
     private Collection<ListenerDefinition> scanListenerDefinitions(Element element, ParserContext parserContext) {
         String basePackage = element.getAttribute(ElementNameConstants.BASE_PACKAGE_ATTRIBUTE);
         if (!StringUtils.hasText(basePackage)) {
-            throw new ListenerDispatcherInitException("illegal base package : " + basePackage,
+            throw new DispatcherInitException("illegal base package : " + basePackage,
                     new IllegalArgumentException("illegal base package"));
         }
 
@@ -133,27 +130,33 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
                 }
 
                 Class<?> listenerClass = Class.forName(metaReader.getClassMetadata().getClassName());
-
-                // 校验通过就注册bean，不管有没有对应的监听器方法
                 String listenerBeanName = StringUtils.uncapitalize(listenerClass.getSimpleName());
-                BeanDefinition listenerBeanDefinition =
-                        BeanDefinitionBuilder.rootBeanDefinition(listenerClass).getBeanDefinition();
-                if (!parserContext.getRegistry().containsBeanDefinition(listenerBeanName)) {
-                    parserContext.getRegistry().registerBeanDefinition(listenerBeanName, listenerBeanDefinition);
-                }
 
                 // 方法校验
                 ReflectionUtils.doWithMethods(listenerClass,
-                        method -> definitions.add(new ListenerDefinition(listenerClass, method)),
+                        method -> {
+                            Class<?> eventClass = method.getParameters()[0].getType();
+                            definitions.add(new ListenerDefinition(listenerClass, eventClass, method));
+                            registerListenerBeanDefinition(listenerBeanName, listenerClass, parserContext);
+                        },
                         this::isMethodMatch);
             }
         } catch (ClassNotFoundException e) {
-            throw new ListenerDispatcherInitException("listener not found", e);
+            throw new DispatcherInitException("listener not found", e);
         } catch (IOException e) {
-            throw new ListenerDispatcherInitException("scan listener filed.", e);
+            throw new DispatcherInitException("scan listener filed.", e);
         }
         return definitions;
 
+    }
+
+    private void registerListenerBeanDefinition(String listenerBeanName, Class<?> listenerClass, ParserContext parserContext) {
+        if (parserContext.getRegistry().containsBeanDefinition(listenerBeanName)) {
+            return;
+        }
+        BeanDefinition listenerBeanDefinition =
+                BeanDefinitionBuilder.rootBeanDefinition(listenerClass).getBeanDefinition();
+        parserContext.getRegistry().registerBeanDefinition(listenerBeanName, listenerBeanDefinition);
     }
 
     private boolean isClassMatch(MetadataReader metaReader, MetadataReaderFactory metadataReaderFactory)
@@ -181,9 +184,11 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
             return;
         }
         for (ListenerDefinition definition : addedDefinitions) {
-            String key = definition.getClazz().getName() + "_" + definition.getListenerInvokeMethod().getName();
+            String key = definition.getReceiverClass().getName()
+                    + "_" + definition.getListenerInvokeMethod().getName()
+                    + "_" + definition.getEventClass().getName();
             if (definitionMap.containsKey(key)) {
-                throw new ListenerDispatcherInitException("duplicated listener : " + key);
+                throw new DispatcherInitException("duplicated listener : " + key);
             }
             definitionMap.put(key, definition);
         }
@@ -195,9 +200,12 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
      * @param element xml dom
      */
     private void initFilters(Element element) {
-        classfilters.add(new AnnotationTypeFilter(Listener.class));
+//        classfilters.add(new AnnotationTypeFilter(Listener.class));
         classfilters.add(new ClassTypeFilter());
+
         methodfilters.add(new MethodParamCountFilter(1));
         methodfilters.add(new MethodReturnTypeFilter(void.class));
+        methodfilters.add(new PublicMethodFilter());
+        methodfilters.add(new MethodAnnotationFilter(Listener.class));
     }
 }

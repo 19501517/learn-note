@@ -4,6 +4,7 @@ package com.nw.dispatcher;
 import com.nw.definition.ListenerDefinition;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @Author liuyefeng
@@ -13,5 +14,10 @@ public class MultiThreadListenerEventDispatcher extends AbstractListenerEventDis
 
     public MultiThreadListenerEventDispatcher(Collection<ListenerDefinition> definitions) {
         super(definitions);
+    }
+
+    @Override
+    protected void doFire(Object event, List<ReceiverInvoker> invokers) {
+
     }
 }

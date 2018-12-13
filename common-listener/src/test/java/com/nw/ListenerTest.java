@@ -1,6 +1,7 @@
 package com.nw;
 
 import com.nw.dispatcher.ListenerEventDispatcher;
+import com.nw.listener.TestEvent;
 import com.nw.listener.TestListener;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,5 +34,11 @@ public class ListenerTest {
         TestListener bean = context.getBean(TestListener.class);
         System.out.println(bean);
         Assert.assertNotNull(bean);
+    }
+
+    @Test
+    public void testEvent() {
+        ListenerEventDispatcher bean = context.getBean("listenerDispatcher", ListenerEventDispatcher.class);
+        bean.fire(new TestEvent());
     }
 }

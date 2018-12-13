@@ -5,4 +5,5 @@ package com.nw.dispatcher;
  * @Date 2018/12/11 18:07
  */
 public interface ListenerEventDispatcher {
+    void fire(Object event);
 }
