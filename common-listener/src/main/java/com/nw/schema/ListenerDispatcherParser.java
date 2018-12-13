@@ -5,7 +5,9 @@ import com.nw.constant.ElementNameConstants;
 import com.nw.constant.ListenerConstants;
 import com.nw.definition.ListenerDefinition;
 import com.nw.exception.ListenerDispatcherInitException;
-import com.nw.filters.ListernerMethodFilter;
+import com.nw.filters.ClassTypeFilter;
+import com.nw.filters.MethodParamCountFilter;
+import com.nw.filters.MethodReturnTypeFilter;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.BeanDefinitionParser;
@@ -19,6 +21,7 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.util.SystemPropertyUtils;
 import org.w3c.dom.Element;
@@ -45,7 +48,7 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
     /**
      * 方法级过滤器，预留扩展
      */
-    private List<ListernerMethodFilter> methodfilters = new ArrayList<>();
+    private List<ReflectionUtils.MethodFilter> methodfilters = new ArrayList<>();
 
     private ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
     private MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
@@ -103,14 +106,14 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
 
         Map<String, ListenerDefinition> definitionMap = new HashMap<>();
         for (String packagePath : packages) {
-            Collection<ListenerDefinition> definitions = doScanListenerDefinitions(packagePath);
+            Collection<ListenerDefinition> definitions = doScanListenerDefinitions(packagePath, parserContext);
             mergeDefinition(definitionMap, definitions);
         }
 
         return definitionMap.values();
     }
 
-    private Collection<ListenerDefinition> doScanListenerDefinitions(String path) {
+    private Collection<ListenerDefinition> doScanListenerDefinitions(String path, ParserContext parserContext) {
         String basePackage = ClassUtils.convertClassNameToResourcePath(
                 SystemPropertyUtils.resolvePlaceholders(path));
         String packageToSearch = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + basePackage + "/**/*.class";
@@ -130,14 +133,19 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
                 }
 
                 Class<?> listenerClass = Class.forName(metaReader.getClassMetadata().getClassName());
-                Method[] methods = listenerClass.getDeclaredMethods();
-                // 方法校验
-                for (Method method : methods) {
-                    if (!isMethodMatch(method)) {
-                        continue;
-                    }
-                    definitions.add(new ListenerDefinition(listenerClass, method));
+
+                // 校验通过就注册bean，不管有没有对应的监听器方法
+                String listenerBeanName = StringUtils.uncapitalize(listenerClass.getSimpleName());
+                BeanDefinition listenerBeanDefinition =
+                        BeanDefinitionBuilder.rootBeanDefinition(listenerClass).getBeanDefinition();
+                if (!parserContext.getRegistry().containsBeanDefinition(listenerBeanName)) {
+                    parserContext.getRegistry().registerBeanDefinition(listenerBeanName, listenerBeanDefinition);
                 }
+
+                // 方法校验
+                ReflectionUtils.doWithMethods(listenerClass,
+                        method -> definitions.add(new ListenerDefinition(listenerClass, method)),
+                        this::isMethodMatch);
             }
         } catch (ClassNotFoundException e) {
             throw new ListenerDispatcherInitException("listener not found", e);
@@ -159,8 +167,8 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
     }
 
     private boolean isMethodMatch(Method method) {
-        for (ListernerMethodFilter filter : methodfilters) {
-            if (!filter.match(method)) {
+        for (ReflectionUtils.MethodFilter filter : methodfilters) {
+            if (!filter.matches(method)) {
                 return false;
             }
         }
@@ -188,5 +196,8 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
      */
     private void initFilters(Element element) {
         classfilters.add(new AnnotationTypeFilter(Listener.class));
+        classfilters.add(new ClassTypeFilter());
+        methodfilters.add(new MethodParamCountFilter(1));
+        methodfilters.add(new MethodReturnTypeFilter(void.class));
     }
 }
