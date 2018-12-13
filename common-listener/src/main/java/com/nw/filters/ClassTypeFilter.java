@@ -6,6 +6,8 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
 
 /**
+ * 类过滤器，要求类是public，且不是接口，且不是abstract
+ *
  * @Author liuyefeng
  * @Date 2018/12/13 12:25
  */

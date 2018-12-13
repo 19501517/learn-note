@@ -1,10 +1,10 @@
 package com.nw.dispatcher;
 
 import com.nw.definition.ListenerDefinition;
-import com.nw.exception.DispatcherException;
 import com.nw.exception.DispatcherInitException;
 import com.nw.exception.DispatcherNotInitializationException;
-import com.nw.utils.ReceiverInvokerEnhanceUtils;
+import com.nw.exception.EventDispatcherException;
+import com.nw.utils.ListenerInvokerEnhanceUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -18,14 +18,15 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * 监听事件转发器父类
+ * 这里其实可以通过不同的监听器信息存储方式，抽象出各种不同的AbstractListenerDispatcher
+ * 例如使用map存储的AbstractMapListenerDispatcher
+ * 为了简单，默认所有的dispatch都使用map存储
+ *
  * @Author liuyefeng
  * @Date 2018/12/11 18:07
  */
 public abstract class AbstractListenerEventDispatcher implements ListenerEventDispatcher, ApplicationContextAware {
-
-    /*这里其实可以通过不同的监听器信息存储方式，抽象出各种不同的AbstractListenerDispatcher
-    例如使用map存储的AbstractMapListenerDispatcher
-    为了简单，默认所有的dispatch都使用map存储*/
 
     /**
      * 监听器增加删除锁
@@ -38,7 +39,7 @@ public abstract class AbstractListenerEventDispatcher implements ListenerEventDi
     /**
      * 事件对应的监听器处理信息
      */
-    private final MultiValueMap<Class<?>, ReceiverInvoker> eventToInvokers;
+    private final MultiValueMap<Class<?>, ListenerInvoker> eventToInvokers;
     /**
      * 是否初始化完毕
      */
@@ -58,7 +59,7 @@ public abstract class AbstractListenerEventDispatcher implements ListenerEventDi
                 try {
                     Object receiverBean = springContext.getBean(definition.getReceiverClass());
                     Class<?> eventClass = definition.getEventClass();
-                    ReceiverInvoker invoker = ReceiverInvokerEnhanceUtils.createInvoker(receiverBean, definition);
+                    ListenerInvoker invoker = ListenerInvokerEnhanceUtils.createInvoker(receiverBean, definition);
                     eventToInvokers.add(eventClass, invoker);
                 } catch (Exception e) {
                     throw new DispatcherInitException(
@@ -75,12 +76,12 @@ public abstract class AbstractListenerEventDispatcher implements ListenerEventDi
             throw new DispatcherNotInitializationException();
         }
         if (event == null) {
-            throw new DispatcherException("event is null", new NullPointerException());
+            throw new EventDispatcherException("event is null", new NullPointerException());
         }
 
-        List<ReceiverInvoker> receiverInvokers = eventToInvokers.get(event.getClass());
+        List<ListenerInvoker> receiverInvokers = eventToInvokers.get(event.getClass());
         if (receiverInvokers == null) {
-            throw new DispatcherException(String.format("event[%s] is not register.", event.getClass()));
+            throw new EventDispatcherException(String.format("event[%s] is not register.", event.getClass()));
         }
 
         doFire(event, receiverInvokers);
@@ -92,7 +93,7 @@ public abstract class AbstractListenerEventDispatcher implements ListenerEventDi
      * @param event    事件
      * @param invokers 接受者
      */
-    protected abstract void doFire(Object event, List<ReceiverInvoker> invokers);
+    protected abstract void doFire(Object event, List<ListenerInvoker> invokers);
 
     /**
      * TODO

@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
+ * 判断是否是public且非static非abstract方法
+ *
  * @Author liuyefeng
  * @Date 2018/12/13 14:25
  */

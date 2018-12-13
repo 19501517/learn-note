@@ -6,6 +6,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
+ * 判断方法是否拥有某个注解
+ *
  * @Author liuyefeng
  * @Date 2018/12/13 14:56
  */

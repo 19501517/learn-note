@@ -1,6 +1,8 @@
 package com.nw.exception;
 
 /**
+ * 转发器初始化异常
+ *
  * @Author liuyefeng
  * @Date 2018/12/12 11:46
  */

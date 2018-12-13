@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * 多线程事件转发器
+ *
  * @Author liuyefeng
  * @Date 2018/12/11 18:07
  */
@@ -17,7 +19,7 @@ public class MultiThreadListenerEventDispatcher extends AbstractListenerEventDis
     }
 
     @Override
-    protected void doFire(Object event, List<ReceiverInvoker> invokers) {
+    protected void doFire(Object event, List<ListenerInvoker> invokers) {
 
     }
 }
