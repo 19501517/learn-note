@@ -1,6 +1,7 @@
 package loganalysis;
 
 import com.alibaba.fastjson.JSON;
+import constants.LogConstants;
 import loganalysis.model.GoldLogParamsModel;
 import loganalysis.model.LogModel;
 import org.apache.commons.io.FileUtils;
@@ -9,6 +10,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @Author liuyefeng
@@ -16,13 +19,12 @@ import java.util.Scanner;
  */
 public class LogClassify {
 
-    private static final String BASE_PATH = "D:/data_analysis/base";
-    private static final String GOLD_PATH = "D:/data_analysis/gold";
-    private static final String RETAIN_PATH = "D:/data_analysis/retain";
+    private static final ExecutorService executors =
+            Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
 
     public static void main(String[] args) throws Exception {
         long begin = System.currentTimeMillis();
-        File baseDir = new File(BASE_PATH);
+        File baseDir = new File(LogConstants.BASE_PATH);
         for (File serverLogDir : baseDir.listFiles()) {
             if (serverLogDir.isDirectory()) {
                 doScanDir(serverLogDir);
@@ -85,9 +87,9 @@ public class LogClassify {
         System.out.println("rechargeLogs:" + rechargeLogs.size());
         System.out.println("costLogs:" + costLogs.size());
 
-        writeFile(RETAIN_PATH + "/" + serverName + "/" + time, loginLogs);
-        writeFile(GOLD_PATH + "/" + serverName + "/recharge/" + time, rechargeLogs);
-        writeFile(GOLD_PATH + "/" + serverName + "/cost/" + time, costLogs);
+        writeFile(LogConstants.RETAIN_PATH + "/" + serverName + "/" + time, loginLogs);
+        writeFile(LogConstants.GOLD_PATH + "/" + serverName + "/recharge/" + time, rechargeLogs);
+        writeFile(LogConstants.GOLD_PATH + "/" + serverName + "/cost/" + time, costLogs);
 
         System.out.println();
     }
