@@ -1,6 +1,7 @@
 package t145_BinaryTreePostorderTaversal;
 
 
+import base.ProxyRunner;
 import commonmodel.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -38,20 +39,7 @@ class BinaryTreePostorderTraversalSolutionTest {
 
     @ParameterizedTest
     @MethodSource("getParams")
-    @DisplayName("exhaustion solution")
-    void bitsetSolutionTest(TreeNode given, List<Integer> expected) {
-        assertAndPrint(given, expected, new BinaryTreePostorderTraversalSolution());
-    }
-
-    private void assertAndPrint(TreeNode given, List<Integer> expected, IBinaryTreePostorderTraversalSolution solution) {
-        long start = System.currentTimeMillis();
-        List<Integer> actualLength = solution.postorderTraversal(given);
-        long end = System.currentTimeMillis();
-        System.out.println("----------------------------------------");
-        System.out.println("given s : " + given);
-        System.out.println("actual result : " + actualLength);
-        System.out.println("expect result : " + expected);
-        System.out.println("time : " + (end - start));
-        Assertions.assertEquals(expected, actualLength);
+    void postorderTraversalTest(TreeNode given, List<Integer> expected) {
+        ProxyRunner.run(given, expected, new BinaryTreePostorderTraversalSolution());
     }
 }

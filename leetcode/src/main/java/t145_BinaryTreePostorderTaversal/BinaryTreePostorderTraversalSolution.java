@@ -1,14 +1,15 @@
 package t145_BinaryTreePostorderTaversal;
 
+import base.Solution;
 import commonmodel.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-class BinaryTreePostorderTraversalSolution implements IBinaryTreePostorderTraversalSolution {
+class BinaryTreePostorderTraversalSolution {
 
-    @Override
+    @Solution
     public List<Integer> postorderTraversal(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         List<Integer> result = new ArrayList<>();
