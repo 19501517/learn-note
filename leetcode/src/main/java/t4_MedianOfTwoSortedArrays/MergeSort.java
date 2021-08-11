@@ -12,7 +12,7 @@ import java.util.Stack;
  * 选择排序后，查找中位数
  * 可以通用双指针法，走到中位数所在位置，不过写起来有点烦，只是占用空间小了，速度并没有快
  */
-class MergeSort {
+public class MergeSort {
 
     @Solution
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {

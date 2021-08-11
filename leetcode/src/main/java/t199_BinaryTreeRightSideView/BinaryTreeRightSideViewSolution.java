@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-class BinaryTreeRightSideViewSolution {
+public class BinaryTreeRightSideViewSolution {
 
     @Solution
     public List<Integer> rightSideView(TreeNode root) {

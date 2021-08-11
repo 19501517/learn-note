@@ -1,6 +1,6 @@
 package t3_LongestSubstringWithoutRepeatingCharacters;
 
-interface ILongestSubstringSolution {
+public interface ILongestSubstringSolution {
 
     int lengthOfLongestSubstring(String s);
 }

@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  * <p>
  * 这里为了结果直观，把原来的返回数组下标改成返回当前数值
  */
-class TwoSumTest {
+public class TwoSumTest {
 
     private static Stream<?> getParams() {
         return Stream.of(
@@ -35,14 +35,14 @@ class TwoSumTest {
     @ParameterizedTest
     @MethodSource("getParams")
     @DisplayName("exhaustion solution")
-    void forceTest(int[] numArray, int target, int[] expectedResult) {
+    public void forceTest(int[] numArray, int target, int[] expectedResult) {
         assertAndPrint(numArray, target, expectedResult, new TwoSumExhaustionSolution());
     }
 
     @ParameterizedTest
     @MethodSource("getParams")
     @DisplayName("one map solution")
-    void mapTest(int[] numArray, int expectedResult, int[] result) {
+    public void mapTest(int[] numArray, int expectedResult, int[] result) {
         assertAndPrint(numArray, expectedResult, result, new TwoSumMapSolution());
     }
 

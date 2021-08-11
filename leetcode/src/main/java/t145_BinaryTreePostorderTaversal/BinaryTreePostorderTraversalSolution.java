@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-class BinaryTreePostorderTraversalSolution {
+public class BinaryTreePostorderTraversalSolution {
 
     @Solution
     public List<Integer> postorderTraversal(TreeNode root) {

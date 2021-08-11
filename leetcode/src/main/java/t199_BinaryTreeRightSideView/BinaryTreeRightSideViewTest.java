@@ -33,7 +33,7 @@ import java.util.stream.Stream;
  * 链接：https://leetcode-cn.com/problems/binary-tree-right-side-view
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-class BinaryTreeRightSideViewTest {
+public class BinaryTreeRightSideViewTest {
 
     private static Stream<?> getParams() {
         return Stream.of(
@@ -56,7 +56,7 @@ class BinaryTreeRightSideViewTest {
 
     @ParameterizedTest
     @MethodSource("getParams")
-    void postorderTraversalTest(TreeNode given, List<Integer> expected) {
+    public void postorderTraversalTest(TreeNode given, List<Integer> expected) {
         ProxyRunner.run(given, expected, new BinaryTreeRightSideViewSolution());
     }
 }

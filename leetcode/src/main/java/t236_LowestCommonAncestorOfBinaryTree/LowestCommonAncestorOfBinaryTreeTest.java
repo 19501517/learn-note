@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 /**
  * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
  */
-class LowestCommonAncestorOfBinaryTreeTest {
+public class LowestCommonAncestorOfBinaryTreeTest {
 
     private static Stream<?> getParams() {
         return Stream.of(
@@ -45,7 +45,7 @@ class LowestCommonAncestorOfBinaryTreeTest {
 
     @ParameterizedTest
     @MethodSource("getParams")
-    void lowestCommonAncestorOfBinaryTreeTest(TreeNode root, TreeNode p, TreeNode q, TreeNode expect) {
+    public void lowestCommonAncestorOfBinaryTreeTest(TreeNode root, TreeNode p, TreeNode q, TreeNode expect) {
         ProxyRunner.run(new Object[]{root, p, q}, expect, new LowestCommonAncestorOfBinaryTreeSolution());
     }
 }

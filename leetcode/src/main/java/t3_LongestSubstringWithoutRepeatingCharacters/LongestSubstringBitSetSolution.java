@@ -6,7 +6,7 @@ import java.util.BitSet;
  * 通过BitSet和活动窗口判断最长序列
  * 这个是自己想出来的方法
  */
-class LongestSubstringBitSetSolution implements ILongestSubstringSolution {
+public class LongestSubstringBitSetSolution implements ILongestSubstringSolution {
 
     @Override
     public int lengthOfLongestSubstring(String s) {

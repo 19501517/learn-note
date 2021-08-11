@@ -29,7 +29,7 @@ import java.util.stream.Stream;
  * Explanation: The answer is "wke", with the length of 3.
  * Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
  */
-class LongestSubstringSolutionTest {
+public class LongestSubstringSolutionTest {
 
     private static Stream<?> getParams() {
         return Stream.of(
@@ -42,14 +42,14 @@ class LongestSubstringSolutionTest {
     @ParameterizedTest
     @MethodSource("getParams")
     @DisplayName("exhaustion solution")
-    void bitsetSolutionTest(String s, int expectedLength) {
+    public void bitsetSolutionTest(String s, int expectedLength) {
         assertAndPrint(s, expectedLength, new LongestSubstringBitSetSolution());
     }
 
     @ParameterizedTest
     @MethodSource("getParams")
     @DisplayName("brute force solution")
-    void bruteForceSolutionTest(String s, int expectedLength) {
+    public void bruteForceSolutionTest(String s, int expectedLength) {
         assertAndPrint(s, expectedLength, new LongestSubstringBruteForceSolution());
     }
 

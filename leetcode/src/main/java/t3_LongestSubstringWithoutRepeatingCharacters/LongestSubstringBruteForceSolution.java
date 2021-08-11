@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 蛮力法，懒得自己写，官网扒下来的
  */
-class LongestSubstringBruteForceSolution implements ILongestSubstringSolution {
+public class LongestSubstringBruteForceSolution implements ILongestSubstringSolution {
 
     @Override
     public int lengthOfLongestSubstring(String s) {

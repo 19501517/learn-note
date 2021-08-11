@@ -11,7 +11,7 @@ import java.util.Stack;
 /**
  * 适用于TreeNode中val唯一的情况下
  */
-class LowestCommonAncestorOfBinaryTreeSolution {
+public class LowestCommonAncestorOfBinaryTreeSolution {
 
     private TreeNode result;
 

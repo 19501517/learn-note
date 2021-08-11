@@ -9,7 +9,7 @@ import java.util.Map;
  * 如果这个结果存在，则把结果的value发出来，和当前数字的索引组成数字返回
  * 否则把当前数字作为key，当前数字的数组索引作为value存进map，继续下一个数字的检索
  */
-class TwoSumMapSolution implements ITwoSumSolution {
+public class TwoSumMapSolution implements ITwoSumSolution {
 
     @Override
     public int[] getTwoSumResult(int[] nums, int target) {

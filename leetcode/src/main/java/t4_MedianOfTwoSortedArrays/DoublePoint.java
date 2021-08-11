@@ -9,7 +9,7 @@ import java.util.Queue;
 /**
  * 双指针法，走到中位数所在位置
  */
-class DoublePoint {
+public class DoublePoint {
 
     @Solution
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {

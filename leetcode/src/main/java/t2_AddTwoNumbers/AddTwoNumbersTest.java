@@ -23,7 +23,7 @@ import java.util.stream.Stream;
  * Output: 7 -> 0 -> 8
  * Explanation: 342 + 465 = 807.
  */
-class AddTwoNumbersTest {
+public class AddTwoNumbersTest {
 
     private static Stream<?> getParams() {
         return Stream.of(
@@ -35,7 +35,7 @@ class AddTwoNumbersTest {
     @ParameterizedTest
     @MethodSource("getParams")
     @DisplayName("exhaustion solution")
-    void solutionTest(ListNode<Integer> l1, ListNode<Integer> l2, ListNode<Integer> result) {
+    public void solutionTest(ListNode<Integer> l1, ListNode<Integer> l2, ListNode<Integer> result) {
         IAddTwoNumbersSolution solution = new AddTwoNumbersSolution();
         assertAndPrint(l1, l2, result, solution);
     }

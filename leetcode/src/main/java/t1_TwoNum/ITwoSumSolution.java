@@ -1,5 +1,5 @@
 package t1_TwoNum;
 
-interface ITwoSumSolution {
+public interface ITwoSumSolution {
     int[] getTwoSumResult(int[] nums, int target);
 }

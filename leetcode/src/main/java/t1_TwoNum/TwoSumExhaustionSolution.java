@@ -3,7 +3,7 @@ package t1_TwoNum;
 /**
  * 穷举法
  */
-class TwoSumExhaustionSolution implements ITwoSumSolution {
+public class TwoSumExhaustionSolution implements ITwoSumSolution {
 
     @Override
     public int[] getTwoSumResult(int[] nums, int target) {
