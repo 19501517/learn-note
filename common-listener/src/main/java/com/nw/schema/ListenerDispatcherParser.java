@@ -94,8 +94,8 @@ public class ListenerDispatcherParser implements BeanDefinitionParser {
     private Collection<ListenerDefinition> scanListenerDefinitions(Element element, ParserContext parserContext) {
         String basePackage = element.getAttribute(ElementNameConstants.BASE_PACKAGE_ATTRIBUTE);
         if (!StringUtils.hasText(basePackage)) {
-            throw new DispatcherInitException("illegal base package : " + basePackage,
-                    new IllegalArgumentException("illegal base package"));
+            throw new DispatcherInitException("illegal com.base package : " + basePackage,
+                    new IllegalArgumentException("illegal com.base package"));
         }
 
         initFilters(element);

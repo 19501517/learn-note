@@ -1,12 +1,11 @@
 package t199_BinaryTreeRightSideView;
 
-import base.Solution;
+import com.base.Solution;
 import commonmodel.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 public class BinaryTreeRightSideViewSolution {
 

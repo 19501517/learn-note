@@ -1,12 +1,7 @@
 package t236_LowestCommonAncestorOfBinaryTree;
 
-import base.Solution;
+import com.base.Solution;
 import commonmodel.TreeNode;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * 适用于TreeNode中val唯一的情况下

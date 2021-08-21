@@ -1,10 +1,7 @@
 package t557_ReverseWordsInAString3;
 
-import base.Solution;
+import com.base.Solution;
 import commonmodel.TreeNode;
-
-import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * 新建数组，循环交换

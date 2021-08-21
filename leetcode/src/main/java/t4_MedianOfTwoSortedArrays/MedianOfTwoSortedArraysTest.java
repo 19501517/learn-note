@@ -1,7 +1,7 @@
 package t4_MedianOfTwoSortedArrays;
 
 
-import base.ProxyRunner;
+import com.base.ProxyRunner;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

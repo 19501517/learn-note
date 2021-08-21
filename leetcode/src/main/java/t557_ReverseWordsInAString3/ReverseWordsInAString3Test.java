@@ -1,8 +1,7 @@
 package t557_ReverseWordsInAString3;
 
 
-import base.ProxyRunner;
-import commonmodel.TreeNode;
+import com.base.ProxyRunner;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -20,7 +19,7 @@ import java.util.stream.Stream;
  * 提示：
  * 在字符串中，每个单词由单个空格分隔，并且字符串中不会有任何额外的空格。
  */
-class ReverseWordsInAString3Test {
+public class ReverseWordsInAString3Test {
 
     private static Stream<?> getParams() {
         return Stream.of(

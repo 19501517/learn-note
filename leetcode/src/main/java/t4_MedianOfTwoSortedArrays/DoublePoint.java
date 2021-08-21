@@ -1,10 +1,9 @@
 package t4_MedianOfTwoSortedArrays;
 
-import base.Solution;
+import com.base.Solution;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * 双指针法，走到中位数所在位置

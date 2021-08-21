@@ -1,6 +1,6 @@
 package t145_BinaryTreePostorderTaversal;
 
-import base.Solution;
+import com.base.Solution;
 import commonmodel.TreeNode;
 
 import java.util.ArrayList;

@@ -1,12 +1,7 @@
 package t4_MedianOfTwoSortedArrays;
 
-import base.Solution;
-import commonmodel.TreeNode;
+import com.base.Solution;
 import org.apache.commons.lang3.ArrayUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * 选择排序后，查找中位数

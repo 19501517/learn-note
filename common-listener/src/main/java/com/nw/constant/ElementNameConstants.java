@@ -10,7 +10,7 @@ public class ElementNameConstants {
 
     public static final String DISPATCHER_ELEMENT = "dispatcher";
 
-    public static final String BASE_PACKAGE_ATTRIBUTE = "base-package";
+    public static final String BASE_PACKAGE_ATTRIBUTE = "com.base-package";
 
     public static final String ID_ATTRIBUTE = "id";
 

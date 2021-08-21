@@ -1,4 +1,4 @@
-package base;
+package com.base;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Assertions;
