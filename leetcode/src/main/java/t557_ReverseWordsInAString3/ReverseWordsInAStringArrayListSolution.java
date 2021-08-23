@@ -1,7 +1,7 @@
 package t557_ReverseWordsInAString3;
 
-import com.base.Solution;
-import commonmodel.TreeNode;
+import com.test.base.Solution;
+import com.test.module.TreeNode;
 
 /**
  * 新建数组，循环交换

@@ -1,7 +1,7 @@
 package t199_BinaryTreeRightSideView;
 
-import com.base.Solution;
-import commonmodel.TreeNode;
+import com.test.base.Solution;
+import com.test.module.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

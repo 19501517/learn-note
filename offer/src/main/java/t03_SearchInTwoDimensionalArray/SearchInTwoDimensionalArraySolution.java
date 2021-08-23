@@ -1,6 +1,6 @@
 package t03_SearchInTwoDimensionalArray;
 
-import com.base.Solution;
+import com.test.base.Solution;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class SearchInTwoDimensionalArraySolution {

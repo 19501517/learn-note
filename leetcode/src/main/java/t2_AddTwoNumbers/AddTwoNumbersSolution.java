@@ -1,6 +1,6 @@
 package t2_AddTwoNumbers;
 
-import commonmodel.ListNode;
+import com.test.module.ListNode;
 
 /**
  * 自己的方法，leetcode上面的解决方法也是跟这个一样

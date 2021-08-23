@@ -1,4 +1,4 @@
-package commonmodel;
+package com.test.module;
 
 public class TreeNode {
     public int val;

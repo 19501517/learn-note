@@ -1,6 +1,6 @@
 package t03_SearchInTwoDimensionalArray;
 
-import com.base.ProxyRunner;
+import com.test.base.ProxyRunner;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

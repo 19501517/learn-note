@@ -1,4 +1,4 @@
-package commonmodel;
+package com.test.module;
 
 import java.util.ArrayList;
 import java.util.List;

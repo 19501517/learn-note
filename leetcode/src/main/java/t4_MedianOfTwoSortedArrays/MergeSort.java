@@ -1,6 +1,6 @@
 package t4_MedianOfTwoSortedArrays;
 
-import com.base.Solution;
+import com.test.base.Solution;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**

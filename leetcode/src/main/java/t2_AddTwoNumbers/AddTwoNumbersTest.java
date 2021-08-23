@@ -1,7 +1,7 @@
 package t2_AddTwoNumbers;
 
 
-import commonmodel.ListNode;
+import com.test.module.ListNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

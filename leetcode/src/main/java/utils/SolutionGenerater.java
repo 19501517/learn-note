@@ -1,7 +1,7 @@
 package utils;
 
 import com.sun.codemodel.*;
-import commonmodel.ListNode;
+import com.test.module.ListNode;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

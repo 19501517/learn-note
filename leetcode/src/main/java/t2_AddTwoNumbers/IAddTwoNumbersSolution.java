@@ -1,6 +1,6 @@
 package t2_AddTwoNumbers;
 
-import commonmodel.ListNode;
+import com.test.module.ListNode;
 
 public interface IAddTwoNumbersSolution {
 

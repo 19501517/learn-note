@@ -1,7 +1,7 @@
 package t133_CloneGraph;
 
-import com.base.Solution;
-import commonmodel.Node;
+import com.test.base.Solution;
+import com.test.module.Node;
 
 import java.util.*;
 

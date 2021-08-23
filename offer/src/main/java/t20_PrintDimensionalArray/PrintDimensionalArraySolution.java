@@ -1,7 +1,6 @@
 package t20_PrintDimensionalArray;
 
-import com.base.Solution;
-import org.apache.commons.lang3.tuple.Pair;
+import com.test.base.Solution;
 
 public class PrintDimensionalArraySolution {
 

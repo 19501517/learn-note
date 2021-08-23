@@ -1,4 +1,4 @@
-package com.base;
+package com.test.base;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

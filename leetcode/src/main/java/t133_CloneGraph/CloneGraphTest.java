@@ -1,8 +1,8 @@
 package t133_CloneGraph;
 
 
-import com.base.ProxyRunner;
-import commonmodel.Node;
+import com.test.base.ProxyRunner;
+import com.test.module.Node;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

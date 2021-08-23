@@ -1,6 +1,6 @@
 package t22_SubSequenceOfStack;
 
-import com.base.Solution;
+import com.test.base.Solution;
 
 import java.util.Stack;
 

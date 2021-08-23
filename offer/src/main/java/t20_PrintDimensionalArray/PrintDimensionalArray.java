@@ -1,7 +1,6 @@
 package t20_PrintDimensionalArray;
 
-import com.base.ProxyRunner;
-import org.apache.commons.lang3.tuple.Pair;
+import com.test.base.ProxyRunner;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

@@ -1,7 +1,7 @@
 package t236_LowestCommonAncestorOfBinaryTree;
 
-import com.base.Solution;
-import commonmodel.TreeNode;
+import com.test.base.Solution;
+import com.test.module.TreeNode;
 
 /**
  * 适用于TreeNode中val唯一的情况下
