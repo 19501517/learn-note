@@ -18,8 +18,8 @@ public class TwoSumMapSolution implements ITwoSumSolution {
             int num = nums[i];
             int otherNum = target - num;
             if (numsPosition.containsKey(otherNum)) {
-//                return new int[]{numsPosition.get(otherNum), i};
-                return new int[]{otherNum, num};
+                return new int[]{numsPosition.get(otherNum), i};
+//                return new int[]{otherNum, num};
             } else {
                 numsPosition.put(num, i);
             }
